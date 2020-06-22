@@ -1,7 +1,7 @@
 let sSkill = [];
 let selectedCombatChara;
 
-showSkillCD = () => {
+const showSkillCD = () => {
   if (!isCombat())
     return;
 
@@ -114,7 +114,7 @@ document.addEventListener('click', function (e) {
 	}
 });
 
-let ready = () => {
+const ready = () => {
 	if (isCombat()) {
 		let abilityIds = document.querySelectorAll('[ability-id]');
 		if (abilityIds.length > 0 && document.querySelectorAll("div.prt-gauge-area")[0].childNodes.length > 0) {
