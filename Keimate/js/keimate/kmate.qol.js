@@ -10,3 +10,16 @@ const CopyToClipboard = (text) => {
   document.execCommand("copy");
   document.body.removeChild(dummy);
 }
+
+// Main Function for Copying Raid ID
+const CopyRaidID = () => {
+  if (isCombat()) {
+    let idEle = document.getElementsByClassName('prt-battle-id');
+
+    if(idEle[0]) {
+      console.log("Copied to Clipboard!");
+
+      CopyToClipboard(idEle[0].textContent);
+    }
+  }
+}
