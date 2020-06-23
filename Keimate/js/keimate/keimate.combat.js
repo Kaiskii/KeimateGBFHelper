@@ -100,8 +100,8 @@ const showBossHP = () => {
 			}
 		});
 	} catch (e) {
-		if (e instanceof ReferenceError)
-      console.log(e);
+		// if (e instanceof ReferenceError)
+      // console.log(e);
   }
 }
 
@@ -136,7 +136,7 @@ const ready = () => {
       }
 
 			try {
-				showSkillCD();
+				// showSkillCD();
 				showBossHP();
 			} catch (e) {
 				if (e instanceof ReferenceError) {

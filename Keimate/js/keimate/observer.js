@@ -1,6 +1,6 @@
 let observer = new MutationObserver(function (mutations) {
 	try {
-		showSkillCD();
+		// showSkillCD();
 		showBossHP();
 	}
 	catch (e) {
