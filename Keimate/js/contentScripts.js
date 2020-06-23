@@ -15,6 +15,11 @@ t.src = chrome.extension.getURL('js/keimate/keimate.combat.js');
 var u = document.createElement('script');
 u.src = chrome.extension.getURL('js/keimate/observer.js');
 (document.head || document.documentElement).appendChild(u);
+
+var p = document.createElement('script');
+p.src = chrome.extension.getURL('js/keimate/kmate.qol.js');
+(document.head || document.documentElement).appendChild(p);
+
 //Our pageScript.js only add listener to window object,
 //so we don't need it after it finish its job. But depend your case,
 //you may want to keep it.

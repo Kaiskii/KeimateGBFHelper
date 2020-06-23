@@ -1,12 +1,12 @@
-function isNullOrUndefined(a) {
+const isNullOrUndefined = (a) => {
 	return (a === null) || (a === undefined);
 }
 
-function numberWithCommas(x) {
+const numberWithCommas = (x) => {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function numberFormat(labelValue, i) {
+const numberFormat = (labelValue, i) => {
 	// Nine Zeroes for Billions
 	return Math.abs(Number(labelValue)) >= 1.0e+9 ?
 		i === 0 ? parseFloat((Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2)) : parseFloat((Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2)) + " b"
@@ -21,18 +21,18 @@ function numberFormat(labelValue, i) {
 		Math.abs(Number(labelValue));
 }
 
-function random(min, max) { // min and max included
+const random = (min, max) => { // min and max included
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function isCombat() {
+const isCombat = () => {
 	return window.location.hash.indexOf("#raid_multi/") > -1 ||
 		window.location.hash.indexOf("#raid/") > -1;
 }
 
-var simulateClick = function (elem) {
+const simulateClick = (elem) => {
 	try {
-		var rect = elem.getBoundingClientRect(),
+		let rect = elem.getBoundingClientRect(),
 			topEnter = rect.top,
 			leftEnter = rect.left, // coordinates of elements topLeft corner
 			topMid = random(rect.bottom, rect.top), // Math.floor(Math.random() * (rect.bottom-rect.top+1)) + rect.top,
@@ -54,29 +54,36 @@ var simulateClick = function (elem) {
 			// the other with center-coordinates
 			mdown = new MouseEvent('mousedown', ducInit),
 			mup = new MouseEvent('mouseup', ducInit),
-			mclick = new MouseEvent('click', ducInit);
-		// trigger mouseover = enter element at toLeft corner
-		elem.dispatchEvent(mover);
+      mclick = new MouseEvent('click', ducInit);
+
+    // trigger mouseover = enter element at toLeft corner
+    elem.dispatchEvent(mover);
+
 		// trigger mousedown  with delay to simulate move-time to center
-		window.setTimeout(function () {
+		window.setTimeout(() => {
 			elem.dispatchEvent(mdown)
-		}, ddelay);
+    }, ddelay);
+
 		// trigger mouseup and click with a bit longer delay
 		// to simulate time between pressing/releasing the button
-		window.setTimeout(function () {
+		window.setTimeout(() => {
 			elem.dispatchEvent(mup);
 			elem.dispatchEvent(mclick);
-		}, ddelay * random(.99, 1.2)); //default 1.2x
-	} catch (e) {}
+    }, ddelay * random(1.1, 1.3)); //default 1.2x //Kai: Changed to 1.1 -> 1.3
+
+	} catch (e) {
+    console.log(e);
+  }
 }
 
-function pResetBonus() {
-	var resetMarkBtn = document.querySelector("div.prt-bonus-reset-button.btn-bonus-reset.weapon");
+const pResetBonus = () => {
+	let resetMarkBtn = document.querySelector("div.prt-bonus-reset-button.btn-bonus-reset.weapon");
 	!isNullOrUndefined(resetMarkBtn) ? simulateClick(resetMarkBtn) : null;
 }
 
-function pSpaceBar(e) {
-	var buttons = ['div.btn-usual-ok', //normal ok button
+const pSpaceBar = (e) => {
+	let buttons = [
+    'div.btn-usual-ok', //normal ok button
 		'div.btn-usual-ok.btn-summon-use',
 		'div.btn-settle', //upgrade button step 1
 		'div.btn-synthesis', //upgrade button step 2
@@ -88,17 +95,19 @@ function pSpaceBar(e) {
 		'div.btn-usual-exchange', //reset btn
 		"div.btn-move-division", //arcarum move button
 		"div.btn-usual-close" //close button
-	];
-	var elem;
+  ];
 
-	var okButton = document.querySelector(buttons[0]);
+	let elem;
+
+  let okButton = document.querySelector(buttons[0]);
+
 	if (!isNullOrUndefined(okButton)) {
 		elem = document.querySelector(buttons[0]).className.includes("btn-usual-ok") ?
 			document.querySelector(buttons[0]) :
 			document.querySelectorAll(buttons[0])[1];
 	} else {
-		for (var i = 1; i < buttons.length; i++) {
-			var btn = document.querySelector(buttons[i]);			
+		for (let i = 1; i < buttons.length; i++) {
+			let btn = document.querySelector(buttons[i]);
 			if (!isNullOrUndefined(btn)) {
 				elem = btn;
 			} else if (buttons[i] === "div.btn-evolution.active") {
@@ -108,9 +117,9 @@ function pSpaceBar(e) {
 	}
 
 	if (!isNullOrUndefined(elem)) {
-		var overlayMask = document.querySelector('div.onm-anim-mask');
+		let overlayMask = document.querySelector('div.onm-anim-mask');
 		if (!isNullOrUndefined(overlayMask) && getComputedStyle(overlayMask).getPropertyValue('display') === "none") {
-			simulateClick(overlayMask);			
+			simulateClick(overlayMask);
 		}else{
 			simulateClick(elem);
 		}
@@ -118,16 +127,17 @@ function pSpaceBar(e) {
 }
 
 //qwer -> 113,119,101,114 (skill) || QWER -> 81, 87, 69, 82 (skill)
-var combat = [81, 87, 69, 82];
+let combat = [81, 87, 69, 82];
 //1234 -> 49, 50, 51, 52 (character)
-var combat2 = [49, 50, 51, 52];
+let combat2 = [49, 50, 51, 52];
 
 //Keypress handler
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', (e) => {
+  // Spacebar
 	if (e.which === 32) {
-		var typing = true;
-		var textAreas = document.querySelectorAll("textarea");
-		for (var i = 0; i < textAreas.length; i++) {
+		let typing = true;
+		let textAreas = document.querySelectorAll("textarea");
+		for (let i = 0; i < textAreas.length; i++) {
 			if (!isNullOrUndefined(textAreas[i].getAttribute("disabled") && textAreas[i].getAttribute("disabled") == true)) {
 				typing = false;
 			}
@@ -142,34 +152,50 @@ document.addEventListener('keydown', function (e) {
 		}
 	}
 
-	if (e.keyCode === 67) pCA();
-	if (e.keyCode === 82) pResetBonus();
+  // C
+  if (e.keyCode === 67)
+    pCA();
 
+  // R
+  if (e.keyCode === 82)
+    pResetBonus();
+
+  // ESC
 	if (e.key === "Escape" || e.key === "Esc") {
 		if (!isCombat()) {
 			return;
-		}
-		var backButton = document.querySelectorAll("div.btn-command-back");
+    }
+
+		let backButton = document.querySelectorAll("div.btn-command-back");
 		selectedCombatChara = {};
-		sSkill = [];
+    sSkill = [];
+
 		if (backButton.length > 0 && !isNullOrUndefined(backButton[0])) {
 			simulateClick(backButton[0]);
 		}
 	}
 
+  // 1234
 	if (combat2.includes(e.keyCode)) {
 		if (!isCombat()) {
 			return;
-		};
-		var index = combat2.indexOf(e.keyCode);
+    }
+
+		let index = combat2.indexOf(e.keyCode);
 		shortcutSelectChara(index)
 	}
 
+  // QWER
 	if (combat.includes(e.keyCode)) {
 		if (!isCombat()) {
 			return;
-		};
+    }
+
 		var index = combat.indexOf(e.keyCode);
 		shortcutSkill(index);
-	}
+  }
+
+  // V
+  if(e.keyCode === 86)
+    CopyRaidID();
 });

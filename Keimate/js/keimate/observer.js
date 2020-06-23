@@ -1,14 +1,14 @@
-var observer = new MutationObserver(function (mutations) {
+let observer = new MutationObserver(function (mutations) {
 	try {
-		showSkillCD();
+		// showSkillCD();
 		showBossHP();
 	}
 	catch (e) {
-		if (e instanceof ReferenceError) { }
-		;
+		if (e instanceof ReferenceError) {}
 	}
 });
-var config = {
+
+let config = {
 	attributes: true,
 	childList: true,
 	characterData: true
