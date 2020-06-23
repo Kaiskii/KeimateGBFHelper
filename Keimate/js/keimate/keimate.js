@@ -192,7 +192,7 @@ document.addEventListener('keydown', (e) => {
     }
 
 		var index = combat.indexOf(e.keyCode);
-		shortcutSkill(index);
+    useActiveCharaSkill(index);
   }
 
   // V

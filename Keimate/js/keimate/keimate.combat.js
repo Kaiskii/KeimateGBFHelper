@@ -105,13 +105,48 @@ const showBossHP = () => {
   }
 }
 
+// Returns the Currently Active Character
+const getActiveCharacter = () => {
+  if(!isCombat())
+    return;
+
+  let charaEle = document.getElementsByClassName('prt-command-chara');
+
+  for(let i = 0; i < charaEle.length; i += 1) {
+    if(window.getComputedStyle(charaEle[i]).display == 'block' && !(charaEle[i].classList.contains('anim-slide-command-right') || charaEle[i].classList.contains('anim-slide-command-left'))) {
+      return charaEle[i];
+    }
+  }
+}
+
+// Depending on Index, Use the Index-ed Active Skill
+const useActiveCharaSkill = (index) => {
+  const currEle = getActiveCharacter();
+
+  if(!currEle) {
+    // console.log("No Character Selected!");
+    return;
+  }
+
+  // 2 is ALWAYS prt-ability-list
+  const currEleSkill = currEle.children[2];
+  const selectedSkill = currEleSkill.children[index];
+
+
+  if(selectedSkill.classList.contains("btn-ability-available")) {
+    simulateClick(selectedSkill);
+  }
+}
+
 document.addEventListener('click', function (e) {
-	if (isCombat() && !isNullOrUndefined(e.target.parentNode) && !isNullOrUndefined(e.target.parentNode.getAttribute("pos"))) {
-		selectedCombatChara = {};
-		sSkill = [];
-		selectedCombatChara = e.target.parentNode;
-		setCharaSkill(selectedCombatChara.getAttribute("pos"));
-	}
+	// if (isCombat() && !isNullOrUndefined(e.target.parentNode) && !isNullOrUndefined(e.target.parentNode.getAttribute("pos"))) {
+	// 	selectedCombatChara = {};
+	// 	sSkill = [];
+	// 	selectedCombatChara = e.target.parentNode;
+	// 	setCharaSkill(selectedCombatChara.getAttribute("pos"));
+  // }
+
+  // console.log(e.clientX, e.clientY);
 });
 
 const ready = () => {
@@ -143,7 +178,9 @@ const ready = () => {
           console.log(e);
         };
 			}
-		}
+    }
+
+
 	}
 	window.requestAnimationFrame(ready);
 };
@@ -172,7 +209,8 @@ const shortcutSelectChara = (index) => {
 const shortcutSkill = (index) => {
 	try {
 		if (sSkill[index].className.includes("btn-ability-available")) {
-			simulateClick(sSkill[index]);
+      // simulateClick(sSkill[index]);
+      console.log(sSkill[index]);
 		}
 	} catch (e) {}
 }
