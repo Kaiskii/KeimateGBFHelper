@@ -132,7 +132,8 @@ let combat = [81, 87, 69, 82];
 let combat2 = [49, 50, 51, 52];
 
 //Keypress handler
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', (e) => {
+  // Spacebar
 	if (e.which === 32) {
 		let typing = true;
 		let textAreas = document.querySelectorAll("textarea");
@@ -151,12 +152,15 @@ document.addEventListener('keydown', function (e) {
 		}
 	}
 
+  // C
   if (e.keyCode === 67)
     pCA();
 
+  // R
   if (e.keyCode === 82)
     pResetBonus();
 
+  // ESC
 	if (e.key === "Escape" || e.key === "Esc") {
 		if (!isCombat()) {
 			return;
@@ -171,6 +175,7 @@ document.addEventListener('keydown', function (e) {
 		}
 	}
 
+  // 1234
 	if (combat2.includes(e.keyCode)) {
 		if (!isCombat()) {
 			return;
@@ -180,6 +185,7 @@ document.addEventListener('keydown', function (e) {
 		shortcutSelectChara(index)
 	}
 
+  // QWER
 	if (combat.includes(e.keyCode)) {
 		if (!isCombat()) {
 			return;
@@ -187,5 +193,9 @@ document.addEventListener('keydown', function (e) {
 
 		var index = combat.indexOf(e.keyCode);
 		shortcutSkill(index);
-	}
+  }
+
+  // V
+  if(e.keyCode === 86)
+    CopyRaidID();
 });

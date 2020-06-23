@@ -34,7 +34,7 @@
 	"content_scripts": [
 		{
 		  "matches": ["http://game.granbluefantasy.jp/*"],
-		  "js": ["js/keimate/keimate.js", "js/keimate/keimate.combat.js","js/keimate/observer.js", "js/contentScripts.js"],
+		  "js": ["js/keimate/keimate.js", "js/keimate/keimate.combat.js", "js/keimate/observer.js", "js/keimate/kmate.qol.js", "js/contentScripts.js"],
 		  "css" : ["css/keimate/keimate-minified.css"]
 		}
 	]
