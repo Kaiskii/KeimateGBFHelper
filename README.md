@@ -33,6 +33,9 @@ Bring back Viramate pls (Click to watch)
   - Buying
   - Accept/Ok 
   
+## During Raid, When the Request Backup Screen is Open
+Pressing V would automatically copy the Raid ID to your Clipboard.
+  
 ## **Work In Progress**
 * Add Item tracking bar SOON™
 
