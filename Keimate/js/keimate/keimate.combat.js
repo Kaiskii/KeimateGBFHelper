@@ -132,9 +132,8 @@ const useActiveCharaSkill = (index) => {
   const currEleSkill = currEle.children[2];
   const selectedSkill = currEleSkill.children[index];
 
-
   if(selectedSkill.classList.contains("btn-ability-available")) {
-    simulateClick(selectedSkill);
+    simulateClick(selectedSkill.children[0]);
   }
 }
 
