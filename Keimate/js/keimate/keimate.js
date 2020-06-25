@@ -130,7 +130,7 @@ const isTypingOrSticker = () => {
   let chatBox = document.getElementsByClassName('input');
   let stickerBox = document.getElementsByClassName('mask_submenu');
 
-  return (chatBox.length > 0 || window.getComputedStyle(stickerBox).display == 'block');
+  return (chatBox.length > 0 || (window.getComputedStyle(stickerBox[0]).display == 'block'));
 }
 
 //qwer -> 113,119,101,114 (skill) || QWER -> 81, 87, 69, 82 (skill)
@@ -150,6 +150,7 @@ document.addEventListener('keydown', (e) => {
     pSpaceBar(e);
     e.preventDefault();
     e.stopPropagation();
+    return true;
 	}
 
   // C
