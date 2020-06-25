@@ -126,6 +126,13 @@ const pSpaceBar = (e) => {
 	}
 }
 
+const isTypingOrSticker = () => {
+  let chatBox = document.getElementsByClassName('input');
+  let stickerBox = document.getElementsByClassName('mask_submenu');
+
+  return (chatBox.length > 0 || window.getComputedStyle(stickerBox).display == 'block');
+}
+
 //qwer -> 113,119,101,114 (skill) || QWER -> 81, 87, 69, 82 (skill)
 let combat = [81, 87, 69, 82];
 //1234 -> 49, 50, 51, 52 (character)
@@ -133,6 +140,11 @@ let combat2 = [49, 50, 51, 52];
 
 //Keypress handler
 document.addEventListener('keydown', (e) => {
+
+  if(isTypingOrSticker()) {
+    return;
+  }
+
   // Spacebar
 	if (e.which === 32) {
 		let typing = true;
@@ -153,8 +165,9 @@ document.addEventListener('keydown', (e) => {
 	}
 
   // C
-  if (e.keyCode === 67)
+  if (e.keyCode === 67){
     pCA();
+  }
 
   // R
   if (e.keyCode === 82)
