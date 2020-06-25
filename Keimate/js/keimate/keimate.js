@@ -147,21 +147,9 @@ document.addEventListener('keydown', (e) => {
 
   // Spacebar
 	if (e.which === 32) {
-		let typing = true;
-		let textAreas = document.querySelectorAll("textarea");
-		for (let i = 0; i < textAreas.length; i++) {
-			if (!isNullOrUndefined(textAreas[i].getAttribute("disabled") && textAreas[i].getAttribute("disabled") == true)) {
-				typing = false;
-			}
-		}
-
-		if (!typing) {
-			pSpaceBar(e);
-			e.preventDefault();
-			e.stopPropagation();
-		} else {
-			return true;
-		}
+    pSpaceBar(e);
+    e.preventDefault();
+    e.stopPropagation();
 	}
 
   // C
